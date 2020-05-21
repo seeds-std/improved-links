@@ -10,6 +10,12 @@ elseif (!is_array($attributes['data']))
 $data_attributes = $attributes['data'];
 unset($attributes['data']);
 
+$confirm = '';
+if (array_key_exists('confirm', $attributes)) {
+    $confirm = $attributes['confirm'];
+    unset($attributes['confirm']);
+}
+
 if (array_key_exists('class', $attributes) != false)
 {
     if (!is_array($attributes['class']))
@@ -25,6 +31,8 @@ if (array_key_exists('class', $attributes) != false)
 {{ Html::link($url, $title,
             array_merge([
                           'data-method' => $method,
+                          'data-confirm' => $confirm,
+                          'onclick' => 'return false;',
                           'data-csrf' => csrf_token(),
                           'class' => 'method-link',
                           'data-attributes' => json_encode($data_attributes)

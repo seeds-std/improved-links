@@ -21,31 +21,34 @@
                 csrf = $link.data('csrf'),
                 method = $link.data('method'),
                 action = $link.attr('href'),
+                message = $link.data('confirm'),
                 attributes = $link.data('attributes');
 
             $link.on('click', function () {
 
-                var $zelda = $('<form/>', {method: method, action: action});
-                var target = $link.attr('target');
-                if (target) {
-                    $zelda.attr('target', target);
-                }
-                if (!/(get|post)/i.test(method)) {
-                    $zelda.append($('<input/>', {name: '_method', value: method, type: 'hidden'}));
-                    method = 'post';
-                    $zelda.attr('method', method);
-                }
-                if (/post/i.test(method)) {
-                    if (csrf) {
-                        $zelda.append($('<input/>', {name: '_token', value: csrf, type: 'hidden'}));
+                if (message === '' || confirm(message)) {
+                    var $zelda = $('<form/>', {method: method, action: action});
+                    var target = $link.attr('target');
+                    if (target) {
+                        $zelda.attr('target', target);
                     }
-                }
-                for (var key in attributes) {
-                    $zelda.append($('<input/>', {name: key, value: attributes[key], type: 'hidden'}));
-                }
-                $zelda.hide().appendTo('body');
+                    if (!/(get|post)/i.test(method)) {
+                        $zelda.append($('<input/>', {name: '_method', value: method, type: 'hidden'}));
+                        method = 'post';
+                        $zelda.attr('method', method);
+                    }
+                    if (/post/i.test(method)) {
+                        if (csrf) {
+                            $zelda.append($('<input/>', {name: '_token', value: csrf, type: 'hidden'}));
+                        }
+                    }
+                    for (var key in attributes) {
+                        $zelda.append($('<input/>', {name: key, value: attributes[key], type: 'hidden'}));
+                    }
+                    $zelda.hide().appendTo('body');
 
-                $zelda.trigger('submit');
+                    $zelda.trigger('submit');
+                }
                 return false;
             });
         })
