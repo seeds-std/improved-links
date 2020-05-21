@@ -8,7 +8,7 @@
  * as the form action URL.
  *
  * ```php
- * {{ Html::methodLink("PUT", 'site/foobar', 'submit', ['data' => ['name1' => 'value1, 'name2' => 'value2']]) }}
+ * {{ Html::methodLink("PUT", 'site/foobar', 'submit', ['data' => ['name1' => 'value1', 'name2' => 'value2']]) }}
  * ```
  *
  */

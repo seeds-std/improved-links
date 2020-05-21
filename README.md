@@ -63,7 +63,7 @@ The link method it's an extension of the HTTP library based in the main link met
 To send the data it's only neccesary to add a `data` key into the `attributes` section.
 
 ```php
-{{ Html::methodLink("PUT", 'site/foobar', 'Submit', ['data' => ['name1' => 'value1, 'name2' => 'value2']]) }}
+{{ Html::methodLink("PUT", 'site/foobar', 'Submit', ['data' => ['name1' => 'value1', 'name2' => 'value2']]) }}
 ```
 
 Once clicked, the link will redirect to the defined url sending all the data via POST.
