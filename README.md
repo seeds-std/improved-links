@@ -35,6 +35,11 @@ Finally, add in your layout a reference to the javascript library:
 
 ```html
     <script type="text/javascript" src="{{ asset('assets/js/improved-links.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a.method-link').methodLink();
+        });
+    </script>
 ```
 
 Aaaaand it's done! 
